@@ -5,29 +5,39 @@ window.onload = () => {
 };
 //Getting serving size
 function getInputValue(){
-    let size = parseInt(document.getElementById(`quanity`).value);
+    let size = parseFloat(document.getElementById(`quanity`).value);
     return size;
 }
 //Functions to retrieve amounts for white rice
 function cupsOfWater(){
-    let riceAmount = parseInt(document.getElementById(`water-1`).innerHTML);
-    return riceAmount;
+    let waterAmount = parseFloat(document.getElementById(`water-1`).innerHTML);
+    return waterAmount;
 }
 function cupsOfOil(){
-    let oilAmount = parseInt(document.getElementById(`oil-1`).innerHTML);
+    let oilAmount = parseFloat(document.getElementById(`oil-1`).innerHTML);
     return oilAmount;
 }
-//Functions retrieving amounts for sprouted riceAmountfunction cupsOfWater(){
+function cupsOfRice(){
+    let riceAmount = parseFloat(document.getElementById(`rice`).innerHTML);
+    return riceAmount;
+}
+//Functions retrieving amounts for sprouted rice{
 function cupsOfWaterSprouted(){
-    let riceAmount = parseInt(document.getElementById(`water-2`).innerHTML);
+    let riceAmount = parseFloat(document.getElementById(`water-2`).innerHTML);
     return riceAmount;
 }
 function cupsOfOilSprouted(){
-    let oilAmount = parseInt(document.getElementById(`oil-2`).innerHTML);
+    let oilAmount = parseFloat(document.getElementById(`oil-2`).innerHTML);
     return oilAmount;
+}
+function cupsOfSproutedRice(){
+    let amount = document.getElementById(`fraction`).innerHTML;
+    amount = 1.25;
+    return amount;
 }
 //Rewriting Recipe
 function rewriteRecipe(){
+    console.log(typeof cupsOfSproutedRice() + ` ` + cupsOfSproutedRice());
     let origWater= cupsOfWater(),
         servingSize= getInputValue(),
         newWater = origWater*servingSize;
@@ -41,6 +51,15 @@ function rewriteRecipe(){
     let sproutedOil = cupsOfOilSprouted(),
         newSproutedOil = sproutedOil * servingSize;
     document.getElementById(`oil-2`).innerHTML = newSproutedOil;
+    let whiteRice = cupsOfRice(),
+        newRice;
+    if(servingSize !== 1){
+        newRice = whiteRice * servingSize;
+        document.getElementById(`rice`).innerHTML = newRice + ` cups`;
+    }
+    let sproutedRice = cupsOfSproutedRice(),
+        newSproutedAmount = sproutedRice * servingSize;
+    document.getElementById(`fraction`).innerHTML = newSproutedAmount;
 }
 //Once button gets clicked it stores value in getInputValue()
 document.getElementById(`enter`).onclick = function(){
