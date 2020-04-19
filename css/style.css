@@ -1,10 +1,11 @@
-body{
-  background-image: linear-gradient(90deg, white, rgb(249,246,146));
+body {
+  background-image: linear-gradient(90deg, white, rgb(249, 246, 146));
   background-color: inherit;
   color: black;
 }
-header{
-  background-color: rgba(255,255,255, 76%);
+
+header {
+  background-color: rgba(255, 255, 255, 76%);
   color: black;
   text-align: center;
   font-family: 'Gotu', sans-serif;
@@ -12,20 +13,24 @@ header{
   padding-top: 10px;
   padding-bottom: 1px;
 }
-main{
+
+main {
   text-align: center;
 }
-p{
+
+p {
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
 }
-button{
+
+button {
   align-content: center;
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 20px;
 }
-button:nth-child(odd){
+
+button:nth-child(odd) {
   margin-right: 25px;
   margin-left: 25px;
 }
