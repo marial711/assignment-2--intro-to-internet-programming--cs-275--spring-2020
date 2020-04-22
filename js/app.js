@@ -1,15 +1,13 @@
-//Loads the page without recipes
 window.onload = function () {
     document.getElementById(`sprouted`).style.display = `none`;
     document.getElementById(`recipe-1`).style.display = `none`;
-}; //Getting serving size
-
+    console.log(`Hello it works also`);
+};
 
 function getInputValue() {
     var size = parseFloat(document.getElementById(`quanity`).value);
     return size;
-} //Functions to retrieve amounts for white rice
-
+}
 
 function cupsOfWater() {
     var waterAmount = parseFloat(document.getElementById(`water-1`).innerHTML);
@@ -24,8 +22,7 @@ function cupsOfOil() {
 function cupsOfRice() {
     var riceAmount = parseFloat(document.getElementById(`rice`).innerHTML);
     return riceAmount;
-} //Functions retrieving amounts for sprouted rice{
-
+}
 
 function cupsOfWaterSprouted() {
     var riceAmount = parseFloat(document.getElementById(`water-2`).innerHTML);
@@ -41,8 +38,7 @@ function cupsOfSproutedRice() {
     var amount = document.getElementById(`fraction`).innerHTML;
     amount = 1.25;
     return amount;
-} //Rewriting Recipe
-
+}
 
 function rewriteRecipe() {
     console.log(typeof(cupsOfSproutedRice()) + ` ` + cupsOfSproutedRice());
@@ -70,14 +66,12 @@ function rewriteRecipe() {
     var sproutedRice = cupsOfSproutedRice(),
         newSproutedAmount = sproutedRice * servingSize;
     document.getElementById(`fraction`).innerHTML = newSproutedAmount;
-} //Once button gets clicked it stores value in getInputValue()
-
+}
 
 document.getElementById(`enter`).onclick = function () {
     getInputValue();
     rewriteRecipe();
-}; //Displays recipe based on button
-
+};
 
 document.getElementById(`white-rice`).onclick = function () {
     if (document.getElementById(`recipe-1`).style.display === `none`) {

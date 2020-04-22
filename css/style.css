@@ -8,7 +8,6 @@ header {
   background-color: rgba(255, 255, 255, 76%);
   color: black;
   text-align: center;
-  font-family: 'Gotu', sans-serif;
   font-size: 30px;
   padding-top: 10px;
   padding-bottom: 1px;
@@ -19,7 +18,6 @@ main {
 }
 
 p {
-  font-family: 'Comfortaa', cursive;
   font-size: 20px;
 }
 

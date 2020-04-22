@@ -1,9 +1,9 @@
-const { src, dest, watch} = require(`gulp`);
+const { src, dest, watch, series} = require(`gulp`);
 const htmlCompressor = require(`gulp-htmlmin`);
 const htmlValidator = require(`gulp-html`);
 const babel = require(`gulp-babel`);
-const jsCompressor = require(`gulp-uglify`);
 const jsLinter = require(`gulp-eslint`);
+const jsCompressor = require(`gulp-uglify`);
 const cssLinter = require(`gulp-stylelint`);
 const browserSync = require(`browser-sync`);
 const reload = browserSync.reload;
@@ -22,11 +22,11 @@ let compressHTML = () => {
 let transpileJSForDev = () => {
     return src(`js/app.js`)
         .pipe(babel())
-        .pipe(dest(`js`));
+        .pipe(dest(`js/temp`));
 };
 
 let transpileJSForProd = () => {
-    return src(`js/app.js`)
+    return src(`js/temp/app.js`)
         .pipe(babel())
         .pipe(jsCompressor())
         .pipe(dest(`prod/js`));
@@ -35,23 +35,23 @@ let transpileJSForProd = () => {
 let lintJS = () => {
     return src(`js/app.js`)
         .pipe(jsLinter({
-            "parserOptions": {
-                "ecmaVersion": 2018,
-                "sourceType": `module`
+            parserOptions: {
+                ecmaVersion: 2018,
+                sourceType: `module`
             },
-            "rules": {
-                "no-console": 0,
-                "no-debugger": 0,
-                "indent": [2, 4, {"SwitchCase": 1}],
-                " quotes": [2, `backtick`],
-                "linebreak-style": [2, `unix`],
-                "semi": [2, `always`],
-                "max-len": [2, 85, 4]
+            rules: {
+                'no-console': 0,
+                nodebugger: 0,
+                indent: [2,4, {'SwitchCase': 1}],
+                quotes: [2, `backtick`],
+                'linebreak-style': [2, `unix`],
+                'semi': [2, `always`],
+                'max-len': [2, 85, 4]
             },
-            "env": {
-                "es6": true,
-                "node": true,
-                "browser": true
+            env: {
+                es6: true,
+                node: true,
+                browser: true
             },
             extends: `eslint:recommended`
         }))
@@ -63,23 +63,35 @@ let lintCSS = () => {
         .pipe(cssLinter({
             failAfterError: true,
             reporters: [
-                {formatter: `verbose`, console: true}
+                {formatter: `verbose`, console: false}
             ]
         }));
+};
+let compileCSSForProd = () => {
+    return src(`css/style.css`)
+        .pipe(lintCSS())
+        .pipe(dest(`prod/style`));
 };
 
 let serve = () => {
     browserSync({
         notify: true,
-        reloadDelay: 0,
+        reloadDelay: 1,
         server: {
-            baseDir: `prod`
+            baseDir: [
+                `html`,
+                `js`,
+                `css`
+            ]
         }
     });
-    watch([
-        `./*.html`,
-        `./js/**/*.js`
-    ]).on(`change`, reload);
+
+    watch(`js/temp/app.js`,
+        series(lintJS, transpileJSForDev)
+    ).on(`change`, reload);
+
+    watch(`html/index.html`, series(validateHTML)
+    ).on(`change`, reload);
 };
 
 exports.compressHTML = compressHTML;
@@ -88,4 +100,5 @@ exports.lintCSS = lintCSS;
 exports.lintJS = lintJS;
 exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
+exports.compileCSSForProd = compileCSSForProd;
 exports.serve = serve;
