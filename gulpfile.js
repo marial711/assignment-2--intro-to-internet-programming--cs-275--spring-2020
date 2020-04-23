@@ -1,4 +1,4 @@
-const { src, dest, watch, series} = require(`gulp`);
+const { src, dest, watch} = require(`gulp`);
 const htmlCompressor = require(`gulp-htmlmin`);
 const htmlValidator = require(`gulp-html`);
 const babel = require(`gulp-babel`);
@@ -70,28 +70,23 @@ let lintCSS = () => {
 let compileCSSForProd = () => {
     return src(`css/style.css`)
         .pipe(lintCSS())
-        .pipe(dest(`prod/style`));
+        .pipe(dest(`prod/styles`));
 };
 
 let serve = () => {
     browserSync({
         notify: true,
-        reloadDelay: 1,
         server: {
             baseDir: [
-                `html`,
-                `js`,
-                `css`
+                `./`,
+                `html`
             ]
         }
     });
 
-    watch(`js/temp/app.js`,
-        series(lintJS, transpileJSForDev)
-    ).on(`change`, reload);
-
-    watch(`html/index.html`, series(validateHTML)
-    ).on(`change`, reload);
+    watch(`css/style.css`, lintCSS).on(`change`, reload);
+    watch(`js/app.js`,lintJS, transpileJSForDev).on(`change`, reload);
+    watch(`html/index.html`, validateHTML).on(`change`, reload);
 };
 
 exports.compressHTML = compressHTML;
