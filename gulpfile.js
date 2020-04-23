@@ -1,4 +1,4 @@
-const { src, dest, watch} = require(`gulp`);
+const { src, dest, watch, series} = require(`gulp`);
 const htmlCompressor = require(`gulp-htmlmin`);
 const htmlValidator = require(`gulp-html`);
 const babel = require(`gulp-babel`);
@@ -69,7 +69,6 @@ let lintCSS = () => {
 };
 let compileCSSForProd = () => {
     return src(`css/style.css`)
-        .pipe(lintCSS())
         .pipe(dest(`prod/styles`));
 };
 
@@ -97,4 +96,6 @@ exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
 exports.compileCSSForProd = compileCSSForProd;
 exports.serve = serve;
-exports.build = (transpileJSForProd, compileCSSForProd, compressHTML, serve);
+exports.build = series(compressHTML,
+    compileCSSForProd,
+    transpileJSForProd);
