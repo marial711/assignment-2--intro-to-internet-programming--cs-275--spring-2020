@@ -97,3 +97,4 @@ exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
 exports.compileCSSForProd = compileCSSForProd;
 exports.serve = serve;
+exports.build = (transpileJSForProd, compileCSSForProd, compressHTML, serve);

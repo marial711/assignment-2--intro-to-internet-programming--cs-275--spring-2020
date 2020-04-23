@@ -1,10 +1,16 @@
 window.onload = function () {
     let button = document.querySelectorAll(`button`);
-    document.getElementById(`sprouted`).style.display = `block`;
-    document.getElementById(`recipe-1`).style.display = `block`;
+    document.getElementById(`sprouted`).style.display = `none`;
+    document.getElementById(`recipe-1`).style.display = `none`;
 
     button[0].addEventListener(`click`, () => {
         rewriteRecipe();
+    });
+    button[1].addEventListener(`click`, () => {
+        document.getElementById(`recipe-1`).style.display = `block`;
+    });
+    button[2].addEventListener(`click`, () => {
+        document.getElementById(`sprouted`).style.display = `block`;
     });
 };
 
