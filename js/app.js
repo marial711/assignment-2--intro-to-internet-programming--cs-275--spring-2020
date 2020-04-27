@@ -16,6 +16,9 @@ window.onload = function () {
         } else if(document.getElementById(`cali-rice`).selected == true){
             document.getElementById(`sprouted`).style.display = `block`;
             document.getElementById(`recipe-1`).style.display = `none`;
+        }else{
+            document.getElementById(`sprouted`).style.display = `none`;
+            document.getElementById(`recipe-1`).style.display = `none`;
         }
     });
 };

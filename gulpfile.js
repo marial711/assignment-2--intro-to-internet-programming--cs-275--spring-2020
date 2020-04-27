@@ -26,7 +26,7 @@ let transpileJSForDev = () => {
 };
 
 let transpileJSForProd = () => {
-    return src(`js/temp/app.js`)
+    return src(`js/temp/*.js`)
         .pipe(babel())
         .pipe(dest(`temp/js`));
 };
@@ -98,6 +98,6 @@ exports.lintJS = lintJS;
 exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
 exports.compileCSSForProd = compileCSSForProd;
-exports.serve = dev;
+exports.dev = dev;
 exports.build = series(compressHTML, compressJS, compileCSSForProd,
     transpileJSForProd);
