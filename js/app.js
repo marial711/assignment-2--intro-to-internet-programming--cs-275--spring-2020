@@ -1,6 +1,6 @@
 window.onload = function () {
-    let button = document.querySelectorAll(`button`);
     let input = document.querySelectorAll(`input`);
+    let select = document.querySelectorAll(`select`);
     document.getElementById(`sprouted`).style.display = `none`;
     document.getElementById(`recipe-1`).style.display = `none`;
 
@@ -8,14 +8,17 @@ window.onload = function () {
         getInputValue();
         rewriteRecipe();
     });
-    button[0].addEventListener(`click`, () => {
-        document.getElementById(`recipe-1`).style.display = `block`;
-    });
-    button[1].addEventListener(`click`, () => {
-        document.getElementById(`sprouted`).style.display = `block`;
+
+    select[0].addEventListener(`change`, () => {
+        if(document.getElementById(`white-rice`).selected === true){
+            document.getElementById(`sprouted`).style.display = `none`;
+            document.getElementById(`recipe-1`).style.display = `block`;
+        } else if(document.getElementById(`cali-rice`).selected == true){
+            document.getElementById(`sprouted`).style.display = `block`;
+            document.getElementById(`recipe-1`).style.display = `none`;
+        }
     });
 };
-
 function getInputValue() {
     let size = parseFloat(document.getElementById(`quanity`).value);
     return size;

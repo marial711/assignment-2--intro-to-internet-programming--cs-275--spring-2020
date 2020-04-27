@@ -10,7 +10,7 @@ const reload = browserSync.reload;
 
 let validateHTML = () => {
     return src(`html/index.html`)
-        .pipe(htmlValidator());
+        .pipe(htmlValidator()) ;
 };
 
 let compressHTML = () => {
@@ -28,10 +28,13 @@ let transpileJSForDev = () => {
 let transpileJSForProd = () => {
     return src(`js/temp/app.js`)
         .pipe(babel())
+        .pipe(dest(`temp/js`));
+};
+let compressJS = () => {
+    return src(`js/temp/`)
         .pipe(jsCompressor())
         .pipe(dest(`prod/js`));
 };
-
 let lintJS = () => {
     return src(`js/app.js`)
         .pipe(jsLinter({
@@ -72,13 +75,13 @@ let compileCSSForProd = () => {
         .pipe(dest(`prod/styles`));
 };
 
-let serve = () => {
+let dev = () => {
     browserSync({
         notify: true,
         server: {
             baseDir: [
-                `./`,
-                `html`
+                `html`,
+                `./`
             ]
         }
     });
@@ -95,7 +98,6 @@ exports.lintJS = lintJS;
 exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
 exports.compileCSSForProd = compileCSSForProd;
-exports.serve = serve;
-exports.build = series(compressHTML,
-    compileCSSForProd,
+exports.serve = dev;
+exports.build = series(compressHTML, compressJS, compileCSSForProd,
     transpileJSForProd);

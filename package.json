@@ -1,7 +1,7 @@
 {
   "name": "assingment-two",
   "version": "1.0.0",
-  "description": "Compress HTML",
+  "description": "",
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
