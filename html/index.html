@@ -4,28 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
-  <title>How To Make Rice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <title>How to make rice!</title>
 </head>
 <body>
   <header>
     <h1>How to Make Rice</h1>
   </header>
   <main>
-    <p>Let's begin! Please input the amount of servings you would like</p>
-    <input id="quanity" type="number" placeholder="1">
-    <select>
-      <option id="intro">Select Your Rice</option>
-      <option id="white-rice">White Rice</option>
-      <option id= "cali-rice">California Sprouted Rice</option>
-    </select>
-    <p>Select Type of Rice</p>
-    <p id="recipe-1">Combine <span id="rice">1</span> <span id=size-1>cup</span> of rice with <span id="water-1">2</span> <span id="size-2">cups</span> of water and <span id="oil-1">1</span> <span id="size-3">Tbsp</span> olive oil. Bring to a boil, then reduce heat to the lowest setting. Cook for about 18 minutes.</p>
-    <!-- <button>White Rice</button> -->
-    <p id ="sprouted">For slightly al dente rice: Combine <span id="fraction">1 1/4</span> <span id="size-4">cups</span> of rice with <span id="water-2">2</span> <span id="size-5">cups</span> of water or broth and <span id="oil-2">1</span> <span id= "size-6">Tbsp</span> olive oil. Bring to a boil and stir once to mix. Reduce heat to low, cover with a tight-fitting lid and cook for 25 minutes. Remove from heat and let stand for 5 minutes. Fluff with a fork and serve.
-    For softer rice: Increase liquid by <span id="increase">1/2</span> <span id="size-7">cup</span> and cook time by 5 minutes. </p>
-    <!-- <button>California Sprouted Rice</button> -->
+    <p>Let's begin! Please input the amount of servings you would like and select your choice of rice!</p>
+    <div id ="editor">
+      <input id="quanity" type="number" placeholder="1">
+      <select>
+        <option id="intro">Select Your Rice</option>
+        <option id="white-rice">White Rice</option>
+        <option id= "cali-rice">California Sprouted Rice</option>
+      </select>
+    </div>
+    <div id="body-of-recipe">
+      <p id="recipe-1">Combine <span id="rice">1</span> <span id=size-1>cup</span> of rice with <span id="water-1">2</span> <span id="size-2">cups</span> of water and <span id="oil-1">1</span> <span id="size-3">Tbsp</span> olive oil. Bring to a boil, then reduce heat to the lowest setting. Cook for about 18 minutes.</p>
+      <p id ="sprouted"><strong>For slightly al dente rice:</strong> Combine <span id="fraction">1 1/4</span> <span id="size-4">cups</span> of rice with <span id="water-2">2</span> <span id="size-5">cups</span> of water or broth and <span id="oil-2">1</span> <span id= "size-6">Tbsp</span> olive oil. Bring to a boil and stir once to mix. Reduce heat to low, cover with a tight-fitting lid and cook for 25 minutes. Remove from heat and let stand for 5 minutes. Fluff with a fork and serve.
+      <br><strong>For softer rice:</strong> Increase liquid by <span id="increase">1/2</span> <span id="size-7">cup</span> and cook time by 5 minutes. </p>
+    </div>
   </main>
   <script src="../js/app.js"></script>
 </body>

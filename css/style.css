@@ -8,6 +8,7 @@ header {
   background-color: rgba(255, 255, 255, 76%);
   color: black;
   text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 30px;
   padding-top: 10px;
   padding-bottom: 1px;
@@ -19,16 +20,26 @@ main {
 
 p {
   font-size: 20px;
+  font-family: Raleway, sans-serif;
 }
 
-button {
-  align-content: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 20px;
+select {
+  height: 30px;
 }
 
-button:nth-child(odd) {
-  margin-right: 25px;
-  margin-left: 25px;
+input {
+  height: 24px;
+}
+
+#editor {
+  margin-left: 200px;
+  margin-right: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#body-of-recipe {
+  padding-top: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
